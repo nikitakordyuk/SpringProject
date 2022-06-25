@@ -26,6 +26,12 @@
     <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
     <br/>
 
+    <label for="took_at">Took at</label>
+    <input type="text" th:field="*{tookAt}" id="took_at"/>
+
+    <div style="color: red" th:if="${#fields.hasErrors('took_at')}" th:errors="*{tookAt}">took_at error</div>
+    <br/>
+
     <input type="submit" value="Create">
 </form>
 

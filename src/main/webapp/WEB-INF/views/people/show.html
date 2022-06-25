@@ -15,7 +15,8 @@
 <span th:unless="${takenBooks.isEmpty()}"> <b>Books:</b></span>
 <div th:unless="${takenBooks.isEmpty()}" th:each="taken : ${takenBooks}">
 
-<span th:text="${taken.getName() + ', ' + taken.getYear()}">taken book</span>
+<span th:if="${taken.isLate()}" style="color: red" th:text="${taken.getName() + ', ' + taken.getYear()}">taken book</span>
+<span th:unless="${taken.isLate()}" th:text="${taken.getName() + ', ' + taken.getYear()}">taken book</span>
 </div>
 
 <hr/>

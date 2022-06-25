@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/books/search}">
+<!--/{queue}(queue=)-->
+    <label for="search">Search book:
+        <input type="search" name="search" value="" id="search"/>
+    </label>
+
+    <label for="submit">
+        <input type="submit" value="Search" id="submit"/>
+    </label>
+</form>
+
+<br/>
+<div th:if="${searchResult.isEmpty()}">No books found</div>
+
+<div th:unless="${searchResult.isEmpty()}" th:each="book : ${searchResult}">
+    <p th:if="${book.getPersonId()}" th:text="${book.getName() + ', '
+     + book.getAuthor() + ', ' + book.getYear()}">
+    </p>
+    <span th:if="${book.getPersonId()}" th:text="'Book is taken by ' + ${book.getOwner().getFullName()}"></span>
+
+    <p th:unless="${book.getPersonId()}" th:text="${book.getName() + ', '
+     + book.getAuthor() + ', ' + book.getYear()}">
+    </p>
+    <span th:unless="${book.getPersonId()}" th:text="'Book is free'"></span>
+    <hr/>
+</div>
+
+</body>
+</html>
